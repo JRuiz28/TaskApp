@@ -73,7 +73,7 @@ namespace TaskApp.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                service.Update(GetTasks(), id, collection["Name"], collection["Description"], collection["State"]);
 
                 return RedirectToAction("Index");
             }

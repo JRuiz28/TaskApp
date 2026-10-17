@@ -19,15 +19,22 @@ namespace TaskApp.Services
             return tasks.FirstOrDefault(task => task.ID == id);
         }
 
-        public Task Create(int ID, string Name, string Descripcion, string State)
+        public Task Create(int ID, string name, string descripcion, string state)
         {
-            Task newTask = new Task(ID, Name, Descripcion, State);
+            Task newTask = new Task(ID, name, descripcion, state);
             return newTask;
         }
 
-        public void Update(Task task)
+        public void Update(List<Task> tasks, int id, string name, string descripcion, string state)
         {
+            Task task = tasks.FirstOrDefault(t => t.ID == id);
 
+            if (task != null)
+            {
+                task.Name = name;
+                task.Description = descripcion;
+                task.State = state;
+            }
         }
 
         public void Delete(int id)
