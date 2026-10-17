@@ -18,7 +18,7 @@ namespace TaskApp.Models
             ID = 0;
             Name = "";
             Description = "";
-            State = "";
+            State = "Pendiente";
             CreatedIn = DateTime.Now;
         }
 
@@ -28,6 +28,7 @@ namespace TaskApp.Models
             Name = name;
             Description = description;
             State = state;
+            CreatedIn = DateTime.Now;
         }
     }
 }
