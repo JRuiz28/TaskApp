@@ -59,7 +59,12 @@ namespace TaskApp.Controllers
         // GET: Default/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Task task = service.SelectByID(GetTasks(), id);
+            if (task == null) {
+                return RedirectToAction("Index");
+            }
+
+            return View(task);
         }
 
         // POST: Default/Edit/5
