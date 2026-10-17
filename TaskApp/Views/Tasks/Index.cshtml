@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    string filter = ViewBag.Filter as string ?? "Todos";
 }
 
 <div class="text-center">
@@ -22,11 +23,17 @@
         <span class="glyphicon glyphicon-plus-sign"></span>
     </a>
 
-    <br />
-    <br />
-    <br />
 </div>
 
+<div>
+    <h3>Filtro por estado</h3>
+    @using (Html.BeginForm("Index", "Tasks", FormMethod.Get))
+    {
+        <label>@Html.RadioButton("filter", "Todos", filter == "Todos", new { onchange = "this.form.submit()" }) Todos</label>
+        <label>@Html.RadioButton("filter", "Pendiente", filter == "Pendiente", new { onchange = "this.form.submit()" }) Pendiente</label>
+        <label>@Html.RadioButton("filter", "Completado", filter == "Completado", new { onchange = "this.form.submit()" }) Completado</label>
+    }
+</div>
 
 <div>
     <div class="table-responsive">

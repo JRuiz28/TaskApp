@@ -9,23 +9,28 @@ namespace TaskApp.Services
     public class TaskService
     {
 
-        public List<Task> Select(List<Task> tasks)//(List<Task> tasks, string filter)
+        public List<Task> Select(List<Task> tasks, string filter)
         {
+            if (filter == "Pendiente" || filter == "Completado")
+            {
+                tasks = tasks.FindAll(t => t.State == filter);
+            }
+
             return tasks;
         }
 
-        public Task SelectByID(List<Task> tasks, int id)
+        public Task SelectByID(List<Task> tasks, Guid id)
         {
             return tasks.FirstOrDefault(task => task.ID == id);
         }
 
-        public Task Create(int ID, string name, string descripcion, string state)
+        public Task Create(Guid ID, string name, string descripcion, string state)
         {
             Task newTask = new Task(ID, name, descripcion, state);
             return newTask;
         }
 
-        public void Update(List<Task> tasks, int id, string name, string descripcion, string state)
+        public void Update(List<Task> tasks, Guid id, string name, string descripcion, string state)
         {
             Task task = tasks.FirstOrDefault(t => t.ID == id);
 
@@ -37,7 +42,7 @@ namespace TaskApp.Services
             }
         }
 
-        public void Delete(List<Task> tasks, int id)
+        public void Delete(List<Task> tasks, Guid id)
         {
             
             Task task = tasks.FirstOrDefault(t => t.ID == id);

@@ -8,7 +8,7 @@ namespace TaskApp.Models
 {
     public class Task
     {
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         [Required(ErrorMessage = "El nombre es obligatorio.")]
         public string Name { get; set; }
@@ -22,14 +22,13 @@ namespace TaskApp.Models
 
         public Task()
         {
-            ID = 0;
             Name = "";
             Description = "";
             State = "Pendiente";
             CreatedIn = DateTime.Now;
         }
 
-        public Task(int id, string name, string description, string state)
+        public Task(Guid id, string name, string description, string state)
         {
             ID = id;
             Name = name;

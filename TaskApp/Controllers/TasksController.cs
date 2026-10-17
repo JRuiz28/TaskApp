@@ -25,10 +25,9 @@ namespace TaskApp.Controllers
 
 
         // GET: Tasks
-        public ActionResult Index()
+        public ActionResult Index(string filter)
         {
-            var list = service.Select(GetTasks());
-            return View(list);
+            return View(service.Select(GetTasks(), filter));
         }
 
         // GET: Default/Create
@@ -44,7 +43,8 @@ namespace TaskApp.Controllers
             try
             {
                 var tasks = GetTasks();
-                Task newTask = service.Create(tasks.Count + 1, collection["Name"], collection["Description"], collection["State"]);
+                Guid id = Guid.NewGuid();
+                Task newTask = service.Create(id, collection["Name"], collection["Description"], collection["State"]);
                 tasks.Add(newTask);
 
                 return RedirectToAction("Index");
@@ -57,7 +57,7 @@ namespace TaskApp.Controllers
 
 
         // GET: Default/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
             Task task = service.SelectByID(GetTasks(), id);
             if (task == null) {
@@ -69,7 +69,7 @@ namespace TaskApp.Controllers
 
         // POST: Default/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Guid id, FormCollection collection)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace TaskApp.Controllers
         }
 
         // GET: Default/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
             Task task = service.SelectByID(GetTasks(), id);
             if (task == null)
@@ -97,7 +97,7 @@ namespace TaskApp.Controllers
 
         // POST: Default/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Guid id, FormCollection collection)
         {
             try
             {
