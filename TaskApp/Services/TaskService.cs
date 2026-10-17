@@ -37,9 +37,14 @@ namespace TaskApp.Services
             }
         }
 
-        public void Delete(int id)
+        public void Delete(List<Task> tasks, int id)
         {
-
+            
+            Task task = tasks.FirstOrDefault(t => t.ID == id);
+            if (task != null)
+            {
+                tasks.Remove(task);
+            }
         }
         
     }

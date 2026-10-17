@@ -86,7 +86,13 @@ namespace TaskApp.Controllers
         // GET: Default/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Task task = service.SelectByID(GetTasks(), id);
+            if (task == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(task);
         }
 
         // POST: Default/Delete/5
@@ -95,8 +101,8 @@ namespace TaskApp.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
+                service.Delete(GetTasks(), id);
+                
                 return RedirectToAction("Index");
             }
             catch

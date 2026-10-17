@@ -23,7 +23,6 @@
     <div class="form-actions no-color text-center">
 
         <a href="@Url.Action("Index")" class="btn btn-primary" title="Volver a gestión de tareas">
-            <span class="glyphicon glyphicon-arrow-left"></span>
             Cancelar
         </a>
 
@@ -57,6 +56,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            Creado el
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedIn)
         </dd>
     </dl>
 </div>
