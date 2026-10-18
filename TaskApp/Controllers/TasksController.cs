@@ -25,9 +25,15 @@ namespace TaskApp.Controllers
 
 
         // GET: Tasks
-        public ActionResult Index(string filter)
+        public ActionResult Index()
         {
-            return View(service.Select(GetTasks(), filter));
+            return View();
+        }
+
+        // Load with Ajax
+        public ActionResult List(string filter)
+        {
+            return PartialView("_table", service.Select(GetTasks(), filter));
         }
 
         // GET: Default/Create
