@@ -34,6 +34,7 @@
         Actualizar
     </button>
 </div>
+<br />
 
 <div id="task-table"></div>
 
@@ -60,7 +61,6 @@
             }
 
             $('#btn-refresh').on('click', loadTasks);
-            $('input[name="filter"]').on('change', loadTasks);
 
             loadTasks();
         });
